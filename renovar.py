@@ -48,7 +48,3 @@ for row in (enumerate(rows)):
             click.click()
 
 sleep(10)
-# Informa quais livros foram renovados
-
-
-
