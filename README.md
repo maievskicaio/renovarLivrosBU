@@ -1,2 +1,2 @@
-# renovarLivrosBU
-Script em Python que renova todos os livros emprestados do sistema "Minha Biblioteca - Pergamum" da UDESC.
+# Script para renovar livros na "Minha Biblioteca - Pergamum" da UDESC
+# Utilizando Python criei esse script toda vez que executado renovar todos os livros emprestados do sistema da Biblioteca da minha universidade.
