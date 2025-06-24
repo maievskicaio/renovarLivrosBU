@@ -37,7 +37,6 @@ titulos = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPA
 titulos = driver.find_element(By.XPATH, "//*[@id='mp-root']/div/div[1]/div[5]/div/div[2]/div[2]/div/div[1]")
 rows = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "row")))
 rows = titulos.find_elements(By.CLASS_NAME, "row")
-print("LIVROS ENCONTRADOS:")
 for row in (enumerate(rows)):
     if row[0] == 0:
         continue
@@ -56,5 +55,8 @@ for row in (enumerate(rows)):
             click = livro[1].find_element(By.XPATH, xpath)
             click.click()
 
-sleep(10)
 # Informa quais livros foram renovados
+print("LIVROS ENCONTRADOS: ")
+for i in (enumerate(listaLivros)):
+    print("[{}] {}".format(i[0]+1, i[1]))
+sleep(10)
