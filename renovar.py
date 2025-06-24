@@ -37,6 +37,7 @@ titulos = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPA
 titulos = driver.find_element(By.XPATH, "//*[@id='mp-root']/div/div[1]/div[5]/div/div[2]/div[2]/div/div[1]")
 rows = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "row")))
 rows = titulos.find_elements(By.CLASS_NAME, "row")
+sleep(2)
 for row in (enumerate(rows)):
     if row[0] == 0:
         continue
@@ -44,15 +45,17 @@ for row in (enumerate(rows)):
     livros = row[1].find_elements(By.CLASS_NAME, "align-self-center")
     for livro in (enumerate(livros)):
         if livro[0] == 0:
-            nomeLivro = "//*[@id='mp-root']/div/div[1]/div[5]/div/div[2]/div[2]/div/div[1]/div[2]/div/div[{}]/div[1]".format(row[0] + 1)
-            nomeLivro = livro[1].find_element(By.XPATH, nomeLivro)
+            caminho = "//*[@id='mp-root']/div/div[1]/div[5]/div/div[2]/div[2]/div/div[1]/div[2]/div/div[{}]/div[1]".format(row[0] + 1)
+            nomeLivro = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, caminho)))
+            nomeLivro = livro[1].find_element(By.XPATH, caminho)
             nomeLivro = nomeLivro.find_elements(By.TAG_NAME, "span")
-            nomeLivro = nomeLivro[2]
-            listaLivros.append(nomeLivro.text)
+            nomeLivro = nomeLivro[2].text
+            print(nomeLivro)
+            listaLivros.append(nomeLivro)
         if livro[0] == 3:
-            sleep(1)
-            xpath = "//*[@id='mp-root']/div/div[1]/div[5]/div/div[2]/div[2]/div/div[1]/div[2]/div/div[{}]/div[4]/button".format(row[0] + 1)
-            click = livro[1].find_element(By.XPATH, xpath)
+            caminho = "//*[@id='mp-root']/div/div[1]/div[5]/div/div[2]/div[2]/div/div[1]/div[2]/div/div[{}]/div[4]/button".format(row[0] + 1)
+            click = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, caminho)))
+            click = livro[1].find_element(By.XPATH, caminho)
             click.click()
 
 # Informa quais livros foram renovados
